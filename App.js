@@ -17,16 +17,23 @@ const BottomTabs = createBottomTabNavigator();
 function ExpensesOverview() {
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         // style the bottom navigation
         headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         headerTintColor: "white", // for text color
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 }, // for bottom background color
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
         headerRight: ({ tintColor }) => (
-          <IconButton icon="add" size={24} color={tintColor} onPress={()=>{}} /> // tintColor comes from headerTintColor
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor} // tintColor comes from headerTintColor
+            onPress={() => {
+              navigation.navigate("ManageExpense");
+            }}
+          />
         ),
-      }}
+      })}
     >
       <BottomTabs.Screen
         name="RecentExpenses"
@@ -59,14 +66,27 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+            headerTintColor: "white",
+          }}
+        >
           {/* we choose the overview screen first, and the manage is nested with bottom tabs */}
           <Stack.Screen
             name="ExpensesOverview"
             component={ExpensesOverview}
             options={{ headerShown: false }} // this to keep the header only for the selected screen, if we keep it it will show two headers (one for overview name and one for the selected screen)
           />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          <Stack.Screen
+            name="ManageExpense"
+            component={ManageExpense}
+            options={{
+              // title: "Manage Expense",
+              presentation:'modal',
+              
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
