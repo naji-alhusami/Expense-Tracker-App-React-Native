@@ -33,21 +33,10 @@ export default ExpensesOutput;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    padding: 24,
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    paddingBottom: 0,
     backgroundColor: GlobalStyles.colors.primary700,
-    // borderRadius: 6,
-    // flexDirection: "row",
-    // justifyContent: "space-between",
-    // alignItems: "center",
   },
-  // period: {
-  //   fontSize: 12,
-  //   color: GlobalStyles.colors.primary400,
-  // },
-  // sum: {
-  //   fontSize: 16,
-  //   fontWeight: "bold",
-  //   color: GlobalStyles.colors.primary500,
-  // },
 });
