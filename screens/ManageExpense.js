@@ -14,6 +14,10 @@ function ManageExpense({ route, navigation }) {
   const editedExpenseId = route.params?.expenseId; // expenseId from expenseId component
   const isEditing = !!editedExpenseId; // !! convert this to Boolean
 
+  const selectedExpense = expensesCtx.expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
+
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEditing ? "Edit Expense" : "Add Expense",
@@ -46,6 +50,7 @@ function ManageExpense({ route, navigation }) {
         onCancel={cancelHandler}
         submitButtonLabel={isEditing ? "Update" : "Add"}
         onSubmit={confirmHandler}
+        defaultValues={selectedExpense}
       />
 
       {isEditing && (
